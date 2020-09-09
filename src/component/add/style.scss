@@ -1,0 +1,21 @@
+.add {
+  border-bottom: solid 0.8px rgb(163, 159, 159);
+  padding-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  &__btn {
+    background-color: #0099ff;
+    width: 130px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-weight: 600;
+  }
+  &__input {
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}

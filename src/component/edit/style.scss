@@ -1,0 +1,82 @@
+.edit {
+  position: relative;
+  padding-bottom: 7rem;
+  &__main {
+    width: 40%;
+    margin: 0 auto;
+    &-content {
+      text-align: left;
+      border: none;
+      margin: 0 auto;
+      border-bottom: solid 0.4px rgb(161, 157, 157);
+      padding: 0.7rem 1rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: rgb(122, 120, 117);
+      width: 100%;
+      margin-left: -15%;
+      padding-left: 0;
+      margin: 3rem 0;
+      &:focus {
+        outline: none;
+      }
+    }
+    &-control {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      //   margin: 2rem auto;
+      padding: 1rem;
+      border: solid 1.7px rgb(99, 97, 97);
+      margin-top: 2rem;
+    }
+    &-input {
+      border: none;
+      outline: none;
+      font-weight: 600;
+    }
+    &-btn {
+      background-color: #5677e6;
+      padding: 0.3rem 1rem;
+      border-radius: 5px;
+      border: none;
+    }
+    &-item {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+      border: solid 0.5px rgb(138, 135, 135);
+      padding: 1rem;
+    }
+    &-name {
+      font-size: 1.3rem;
+      color: rgb(138, 135, 135);
+    }
+    &-icon {
+      font-size: 1.3rem;
+      color: rgb(138, 135, 135);
+      padding: 0.5rem;
+    }
+  }
+  &__content {
+    border-bottom: solid 0.5px rgb(112, 110, 110);
+    width: 50%;
+    margin: 4rem auto;
+    font-size: 1.5rem;
+    text-align: left;
+    color: rgb(180, 174, 174);
+  }
+  &__btn {
+    width: 250px;
+    background-color: #5677e6;
+    padding: 0.7rem 0;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    outline: none;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    margin-top: 3rem;
+  }
+}
