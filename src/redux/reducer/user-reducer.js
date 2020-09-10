@@ -2,14 +2,13 @@ import * as Types from "../constant/index";
 var initialState = {
   isLogin: false,
   avatar: "",
-  isLogout: false,
+  isLogout: "",
 };
 
 const user = (state = initialState, action) => {
   switch (action.type) {
     case Types.LOGIN_SUCCES:
       return {
-        ...state,
         isLogout: false,
         isLogin: true,
       };
