@@ -7,7 +7,6 @@ Navbar.propTypes = {};
 
 function Navbar(props) {
   const showLogout = () => {
-    console.log(props.isLogin);
     if (props.isLogin.isLogin === true) {
       return (
         <>

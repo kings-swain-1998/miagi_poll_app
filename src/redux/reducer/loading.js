@@ -6,7 +6,6 @@ var initialState = {
 const loading = (state = initialState, action) => {
   switch (action.type) {
     case Types.LOADING_SUCCES:
-      console.log(action.payload);
       return {
         loading: action.payload,
       };

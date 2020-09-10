@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import Navbar from "./component/navbar";
 import Home from "./component/home/index";
 import { connect } from "react-redux";
-import Poll from "./component/poll_list/index";
 import { getPollRq, loadingSucces, loadingFail } from "./redux/action";
 import { Switch, Route } from "react-router";
 import { Redirect } from "react-router-dom";
@@ -11,7 +10,6 @@ import router from "./router/index";
 import ReactLoading from "react-loading";
 
 function App(props) {
-  const [start, setStart] = useState(false);
   useEffect(() => {
     if (localStorage.getItem("token")) {
       props.getFirstData();

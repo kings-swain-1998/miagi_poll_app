@@ -1,12 +1,9 @@
-import React, { useEffect, useState, useCallback } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { acGetItemPoll, loadingFail } from "../../redux/action";
 import "./style.scss";
 import Axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Detail from "../poll_detail";
 import { Redirect } from "react-router";
 
 Vote.propTypes = {};
@@ -55,7 +52,11 @@ function Vote(props) {
           {props.pollItem.poll_question ? (
             props.pollItem.poll_question.map((item, i) => {
               return (
-                <div className="vote__item" onClick={() => handleVote(i, item)}>
+                <div
+                  key={i}
+                  className="vote__item"
+                  onClick={() => handleVote(i, item)}
+                >
                   <div className="vote__check">
                     <i
                       className={`fa fa-check vote__icon ${handleClassVote(i)}`}

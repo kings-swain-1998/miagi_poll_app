@@ -5,6 +5,8 @@ import { acAddPollRq, getPollRq } from "../../redux/action";
 import { connect } from "react-redux";
 import { useHistory, Redirect } from "react-router";
 import moment from "moment";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 Addpoll.propTypes = {};
 
@@ -13,6 +15,9 @@ function Addpoll(props) {
   const handleChangePoll = (e) => {
     setInputValue(e.target.value);
   };
+
+  const notify = (title) => toast(title);
+
   const addPollAc = () => {
     const date = new Date();
     const now = moment(date).format("YYYY-MM-DDThh:mm:ss.000000") + "Z";
@@ -24,6 +29,8 @@ function Addpoll(props) {
         created_at: now,
         id: id + 1,
       });
+    } else {
+      return notify("Content not emty");
     }
   };
   return (
@@ -37,6 +44,7 @@ function Addpoll(props) {
       <button className="add__btn" onClick={addPollAc}>
         Add new
       </button>
+      <ToastContainer />
     </div>
   );
 }

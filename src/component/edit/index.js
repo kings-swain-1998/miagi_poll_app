@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import {
   acGetItemPoll,
   addItemQuestionLocal,
@@ -18,7 +17,6 @@ function Edit(props) {
   const [activeEdit, setActiveEdit] = useState(false);
   const [idEdit, setIdEdit] = useState();
   const [valueContent, setValueContent] = useState("");
-  const [activeContent, setActiveContent] = useState(false);
 
   useEffect(() => {
     const id = props.match.match.params.id;
@@ -38,17 +36,17 @@ function Edit(props) {
       if (props.poll_item.poll_question) {
         return props.poll_item.poll_question.map((item, i) => {
           return (
-            <div className="edit__main-item">
+            <div key={i} className="edit__main-item">
               <p className="edit__main-name" key={i}>
                 {item.content}
               </p>
               <i
-                class="fa fa-pencil edit__main-icon"
+                className="fa fa-pencil edit__main-icon"
                 aria-hidden="true"
                 onClick={() => handleEditPoll(item.content, item.id)}
               ></i>
               <i
-                class="fa fa-times edit__main-icon"
+                className="fa fa-times edit__main-icon"
                 aria-hidden="true"
                 onClick={() => deleteQuestion(item.id)}
               ></i>
@@ -67,14 +65,16 @@ function Edit(props) {
     setValueInput(e.target.value);
   };
   const addQuestionLocal = () => {
-    if (activeEdit === false) {
-      const data = { content: valueInput };
-      props.addQuestion(data);
-      setValueInput("");
-    } else {
-      props.editQuestion(valueInput, idEdit);
-      setActiveEdit(false);
-      setValueInput("");
+    if (valueInput) {
+      if (activeEdit === false) {
+        const data = { content: valueInput };
+        props.addQuestion(data);
+        setValueInput("");
+      } else {
+        props.editQuestion(valueInput, idEdit);
+        setActiveEdit(false);
+        setValueInput("");
+      }
     }
   };
 
@@ -86,7 +86,6 @@ function Edit(props) {
     const id = props.match.match.params.id;
     const data = { content: valueContent, questions: arrMapped };
     props.addQuestionServer(id, data);
-    setActiveContent(false);
     props.match.history.push("/poll");
   };
   const handleAddOrEdit = () => {
@@ -101,7 +100,9 @@ function Edit(props) {
     setValueContent(e.target.value);
   };
 
-  return (
+  return props.isLogin.isLogin === false ? (
+    <Redirect to="/"></Redirect>
+  ) : (
     <div className="edit">
       <div className="edit__main">
         <input
@@ -151,6 +152,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     poll_item: state.poll_item,
+    isLogin: state.user,
   };
 };
 

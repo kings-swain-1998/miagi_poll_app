@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import Axios from "axios";
 import "./style.scss";
+import { connect } from "react-redux";
+import { Redirect } from "react-router";
 
 Detail.propTypes = {};
 
@@ -32,9 +33,9 @@ function Detail(props) {
 
   const showUserPollAnswer = (poll_item) => {
     if (poll_item.poll_answer.length > 0) {
-      return poll_item.poll_answer.map((poll_answer_item) => {
+      return poll_item.poll_answer.map((poll_answer_item, i) => {
         return (
-          <p className="detail__question-user">
+          <p className="detail__question-user" key={i}>
             {poll_answer_item.user.display_name}
           </p>
         );
@@ -106,7 +107,17 @@ function Detail(props) {
       );
     }
   };
-  return <div className="detail">{showItem()}</div>;
+  return props.isLogin.isLogin === false ? (
+    <Redirect to="/"></Redirect>
+  ) : (
+    <div className="detail">{showItem()}</div>
+  );
 }
 
-export default Detail;
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.user,
+  };
+};
+
+export default connect(mapStateToProps, null)(Detail);

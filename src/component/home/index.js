@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import "./style.scss";
 import { acLoginRq } from "../../redux/action";
 import { connect } from "react-redux";
@@ -14,7 +13,6 @@ function Home(props) {
     email: "",
     password: "",
   });
-  const [loginSucess, setLoginSucces] = useState(false);
 
   const handleChange = (e) => {
     const name = e.target.name;

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { getPollRq, loadingFail } from "../../redux/action";
 import { connect } from "react-redux";
 import "./style.scss";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Addpoll from "../add";
 import moment from "moment";
 
@@ -18,7 +18,7 @@ function Poll(props) {
       return props.poll[0].map((item, i) => {
         return (
           <div className="poll__item" key={i}>
-            <Link to={`/polldetail/${item.id}`}>
+            <Link className="poll__item-content" to={`/polldetail/${item.id}`}>
               <p className="poll__item-name">{item.content}</p>
             </Link>
             <div>
@@ -44,7 +44,9 @@ function Poll(props) {
     }
   };
 
-  return (
+  return props.isLogin.isLogin === false ? (
+    <Redirect to="/"></Redirect>
+  ) : (
     <div className="poll">
       <div className="poll__form">
         <Addpoll listPoll={props.poll[0]} match={props.match}></Addpoll>
@@ -57,7 +59,7 @@ function Poll(props) {
 const mapStateToProps = (state) => {
   return {
     poll: state.poll,
-    islogin: state.user,
+    isLogin: state.user,
     loading: state.loading,
   };
 };

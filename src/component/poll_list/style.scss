@@ -19,6 +19,16 @@
       text-decoration: none;
       color: black;
     }
+    &-content {
+      text-decoration: none;
+      color: rgb(143, 136, 136);
+      font-weight: 600;
+      font-size: 1.3rem;
+      &:hover {
+        text-decoration: none;
+        color: rgb(143, 136, 136);
+      }
+    }
     &-date {
       font-size: 0.7rem;
       font-weight: 600;

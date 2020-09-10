@@ -13,11 +13,6 @@ const user = (state = initialState, action) => {
         isLogout: false,
         isLogin: true,
       };
-    case Types.LOGIN_FAIL:
-      return {
-        isLogin: false,
-        isLogout: true,
-      };
     case Types.LOGGED_IN:
       return {
         ...state,
@@ -27,6 +22,7 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         isLogin: false,
+        isLogout: true,
       };
     default:
       return state;

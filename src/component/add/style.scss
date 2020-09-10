@@ -11,6 +11,11 @@
     border-radius: 5px;
     outline: none;
     font-weight: 600;
+    cursor: pointer;
+    &:focus {
+      border: none;
+      outline: none;
+    }
   }
   &__input {
     border: none;
