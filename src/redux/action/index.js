@@ -5,15 +5,14 @@ import * as Types from "../constant/index";
 
 export const acLoginRq = (data) => {
   return (dispatch) => {
-    Axios.post("https://dev.miagi-so.net/api/v1/login", data)
+    Axios.post(`${process.env.REACT_APP_API_URL}/login`, data)
       .then((res) => {
         localStorage.setItem("token", res.data.data.token);
         localStorage.setItem("userId", res.data.data.user.id);
         localStorage.setItem("userName", res.data.data.user.display_name);
-        window.location.reload();
         return dispatch(acLogin(res.data));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => dispatch(acLogoutRq));
   };
 };
 
@@ -35,7 +34,7 @@ export const acLogoutRq = () => {
 export const getPollRq = () => {
   const token = localStorage.getItem("token");
   return (dispatch) => {
-    Axios.get("https://dev.miagi-so.net/api/v1/poll", {
+    Axios.get(`${process.env.REACT_APP_API_URL}/poll`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -67,15 +66,18 @@ export const acLogged = () => {
 
 // add poll
 
-export const acAddPollRq = (data, dataLocal) => {
+export const acAddPollRq = (data) => {
   const token = localStorage.getItem("token");
+  const dataItem = { content: data.content };
   return (dispatch) => {
-    Axios.post("https://dev.miagi-so.net/api/v1/poll/store", data, {
+    console.log(dataItem);
+    Axios.post(`${process.env.REACT_APP_API_URL}/poll/store`, dataItem, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((res) => {
+        dispatch(acAddPoll(data));
         return dispatch(loadingSucces());
       })
       .catch((err) => {
@@ -96,7 +98,7 @@ export const acAddPoll = (data) => {
 export const acGetItemPoll = (id) => {
   const token = localStorage.getItem("token");
   return (dispatch) => {
-    Axios.get(`https://dev.miagi-so.net/api/v1/poll/${id}/show`, {
+    Axios.get(`${process.env.REACT_APP_API_URL}/poll/${id}/show`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -136,7 +138,7 @@ export const editContentLocal = (id, data) => {
 export const addItemQuestionServer = (id, data) => {
   const token = localStorage.getItem("token");
   return (dispatch) => {
-    Axios.patch(`https://dev.miagi-so.net/api/v1/poll/${id}/update`, data, {
+    Axios.patch(`${process.env.REACT_APP_API_URL}/poll/${id}/update`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

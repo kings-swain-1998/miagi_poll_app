@@ -1,7 +1,5 @@
 import React from "react";
 import "./style.scss";
-import PropTypes from "prop-types";
-import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { acLogoutRq } from "../../redux/action";
 
@@ -13,7 +11,7 @@ function Navbar(props) {
     if (props.isLogin.isLogin === true) {
       return (
         <>
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
+          <i className="fa fa-sign-out" aria-hidden="true"></i>
           <p className="navbar__logout-title">Logout</p>
         </>
       );

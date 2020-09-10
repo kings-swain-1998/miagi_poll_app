@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ReactLoading from "react-loading";
 
 Home.propTypes = {};
 
@@ -25,10 +24,19 @@ function Home(props) {
       [name]: value,
     });
   };
-
+  const notify = (title) => toast(title);
   const onSubmit = (e) => {
     e.preventDefault();
     props.loginRq(valueForm);
+    if (!valueForm.email) {
+      return notify("Email not emty");
+    }
+    if (!valueForm.password) {
+      return notify("Password not emty");
+    }
+    if (props.islogin.isLogout === true) {
+      return notify("Wrong account or password");
+    }
     if (props.islogin.isLogin === true) {
       return <Redirect to="/poll"></Redirect>;
     }
@@ -55,6 +63,7 @@ function Home(props) {
               placeholder="Password"
               className="home__input"
               name="password"
+              type="password"
               value={valueForm.password}
               onChange={handleChange}
             ></input>

@@ -2,6 +2,7 @@ import * as Types from "../constant/index";
 var initialState = {
   isLogin: false,
   avatar: "",
+  isLogout: false,
 };
 
 const user = (state = initialState, action) => {
@@ -9,11 +10,13 @@ const user = (state = initialState, action) => {
     case Types.LOGIN_SUCCES:
       return {
         ...state,
+        isLogout: false,
         isLogin: true,
       };
     case Types.LOGIN_FAIL:
       return {
         isLogin: false,
+        isLogout: true,
       };
     case Types.LOGGED_IN:
       return {

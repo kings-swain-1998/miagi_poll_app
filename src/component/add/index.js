@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./style.scss";
-import { acAddPollRq } from "../../redux/action";
+import { acAddPollRq, getPollRq } from "../../redux/action";
 import { connect } from "react-redux";
 import { useHistory, Redirect } from "react-router";
 import moment from "moment";
@@ -14,10 +14,17 @@ function Addpoll(props) {
     setInputValue(e.target.value);
   };
   const addPollAc = () => {
-    props.addPoll({ content: inputValue });
-    // props.match.history.push("/poll");
-    // console.log(props.match);
-    window.location.reload();
+    const date = new Date();
+    const now = moment(date).format("YYYY-MM-DDThh:mm:ss.000000") + "Z";
+    const pollItemId = props.listPoll.length;
+    const id = props.listPoll[pollItemId - 1].id;
+    if (inputValue) {
+      props.addPoll({
+        content: inputValue,
+        created_at: now,
+        id: id + 1,
+      });
+    }
   };
   return (
     <div className="add">
@@ -36,8 +43,8 @@ function Addpoll(props) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addPoll: (data, dataLocal) => {
-      return dispatch(acAddPollRq(data, dataLocal));
+    addPoll: (data) => {
+      return dispatch(acAddPollRq(data));
     },
   };
 };
