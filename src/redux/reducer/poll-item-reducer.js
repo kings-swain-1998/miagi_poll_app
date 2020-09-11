@@ -6,7 +6,6 @@ const poll_item = (state = initialState, action) => {
     case Types.GET_POLL_ITEM_SUCCES:
       return (state = action.payload);
     case Types.ADD_POLL_ITEM_SUCCES:
-      console.log(action.payload);
       state.poll_question.unshift(action.payload);
       return { ...state };
     case Types.EDIT_QUESTION:

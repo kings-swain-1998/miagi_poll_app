@@ -6,9 +6,7 @@ const poll = (state = initialState, action) => {
     case Types.GET_DATA_SUCCES:
       return [action.payload];
     case Types.ADD_POLL_SUCCES:
-      console.log(action.payload);
       state[0].unshift(action.payload);
-      console.log(state);
       return [...state];
     case Types.EDIT_POLL_CONTENT_SUCCES:
       const id = parseInt(action.idContent);
