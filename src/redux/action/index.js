@@ -70,7 +70,6 @@ export const acAddPollRq = (data) => {
   const token = localStorage.getItem("token");
   const dataItem = { content: data.content };
   return (dispatch) => {
-    console.log(dataItem);
     Axios.post(`${process.env.REACT_APP_API_URL}/poll/store`, dataItem, {
       headers: {
         Authorization: `Bearer ${token}`,
