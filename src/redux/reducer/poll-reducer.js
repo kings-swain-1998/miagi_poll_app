@@ -18,7 +18,6 @@ const poll = (state = initialState, action) => {
 };
 
 const findIndex = (arr, id) => {
-  console.log(arr, id);
   if (arr.length > 0) {
     for (let i = 2; i <= arr.length; i++) {
       if (arr[i].id === id) {
