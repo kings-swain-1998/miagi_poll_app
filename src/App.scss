@@ -40,6 +40,11 @@ button {
   background-color: #395697 !important;
   color: #fff !important;
   text-transform: capitalize;
+  cursor: pointer;
+}
+button:focus {
+  border: none;
+  outline: none;
 }
 
 .Toastify__close-button {

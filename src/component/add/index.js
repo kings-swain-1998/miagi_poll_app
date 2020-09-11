@@ -29,6 +29,7 @@ function Addpoll(props) {
         created_at: now,
         id: id + 1,
       });
+      setInputValue("");
     } else {
       return notify("Content not emty");
     }
